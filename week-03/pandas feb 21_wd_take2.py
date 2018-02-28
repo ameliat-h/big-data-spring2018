@@ -104,3 +104,9 @@ print(f"Average number of GPS pings: {mean_count}")
 
 #there's a single row that contains the maximum alue of GPS pings.
 df[df['count'] == df['count'].min()]
+
+#moving onto the cleaning stage...
+#this line lets us plot in Atom
+import matplotlib
+#this line allows the result of plots to be displayed inline with our code.
+%matplotlib inline
