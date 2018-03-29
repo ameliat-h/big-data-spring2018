@@ -67,6 +67,11 @@ def random_number(a,b=0):
 assert(0 <= random_number(75) <= 75)
 assert(51 <= random_number(75, b = 51) <= 100)
 
+''' Amelia, remember that a function needs to be called in order to be complete! Don't forget to include a call statement, like the one below.
+'''
+print(random_number(100,90))
+## end of PH edits
+
 #D: Write a function that expects two inputs. The first is a title that may be multiple words, the second is a number. Given these inputs, print the following string (replacing n and title with dynamic values passed to the script.)
 # The number n bestseller today is: title
 # Ask for the user to define the values of two variables, title and place
@@ -77,6 +82,16 @@ Proper_name = name.title()
 #print using a f string to produce a dynamic string based on the input-generated values of the two variables (title and place)
 msg = f"The number {place} bestseller today is: {Proper_name}."
 print(msg)
+
+''' Amelia, great way of solving this! However, it's not actually a function. A function would look something like this...
+'''
+def bestseller(title,rank):
+  title = title.title()
+  text = f"The number {rank} bestseller today is: {title}"
+  print(text)
+
+bestseller("1984",3)
+## end of PH edits
 
 #E. Write a function that evaluates the strength of a password (criteria on pset handout)....
 #ok! so, start with asking for user input, and then running a bunch of boolean tests on that input to see if they meet the criteria. If any one criterion isn't met, the password is denied...
@@ -113,6 +128,24 @@ if pw_length and pw_num_digs and pw_upper and empty:
 else:
     print("You didn't meet all criteria, try again.")
 
+'''
+Great job trying to piece everything together! You have all the pieces, and now you just need to wrap them up together inside of a function and put your input function inside of the function you're writing. Here's one example of a function that does this. Let me know if you want to talk through this.
+'''
+def pw_check():
+  attempt = input('password: ')
+  spc_list = ['!', '?', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '+', '=']
+  length = 8 <= len(attempt) <= 14
+  digits = sum(i.isdigit() for i in attempt) >= 2
+  uppercase = sum(i.isupper() for i in attempt) >= 1
+  spc = sum(attempt.count(i) for i in spc_list) >= 1
+  if length & digits & uppercase & spc:
+    print("success!")
+  else:
+    print("your password is a giant failure. try again.")
+
+pw_check()
+## end of PH edits
+
 #F. Create a function called exp that accepts two integers and then |return|s an exponentiation, without using the exponentiation operator ( ** ). You may assume these are positive integers. Use at least one custom-defined function.
 
 # use a for loop! special thanks to this topic: https://stackoverflow.com/questions/26248262/in-python-use-a-for-loop-and-multiplication-to-create-a-power-function
@@ -125,7 +158,8 @@ def power(base,exp):
 print(power(5,3))
 
 #G: Write your own versions of the Python built-in functions min() and max(). They should take a list as an argument and return the minimum or maximum element. Assume lists contain numeric items only.
-
+''' looks like you copied your exponent function into here. if you did the extra credit and want a pair of eyes on it, let me know!
+'''
 def power(base,exp):
   res = 1
   for _ in range(exp):
