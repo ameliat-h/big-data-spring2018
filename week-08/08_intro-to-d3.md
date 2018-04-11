@@ -15,20 +15,10 @@ visualizations using web standards of HTML, SVG, CSS, and JavaScript.
 The library is well developed, and very popular among Data Scientists and
 Graphics Developers.
 
-It is perhaps easier to describe D3 by detailing what it is not. You've probably
-come across standard plotting libraries; `ggplot2` or `shiny` for R, Excel's
-built-in plotting functions, `matplotlib` in Python... these are libraries that
-make it easy to do *particular kinds of plotting*. They will have built-in functions
-to make producing certain kind of graphics very simple. Generating a complete bar
-chart might require only one line of code, or the click of one button.
+It is perhaps easier to describe D3 by detailing what it is not. You've probably come across standard plotting libraries; `ggplot2` or `shiny` for R, Excel's built-in plotting functions, `matplotlib` in Python... these are libraries that make it easy to do *particular kinds of plotting*. They will have built-in functions to make producing certain kind of graphics very simple. Generating a complete bar chart might require only one line of code, or the click of one button.
 
-This is not the case in D3. D3 is output-neutral; this means that every graphic requires
-quite a bit of explicit coding to give direction to our web browser. On the one hand,
-this means that producing even simple graphics will at first seem very laborious. On
-the other hand, because D3 is not prescriptive, you can quite literally do anything with it.
-Where dedicated plotting and mapping libraries break down quite quickly when you want to
-do something other than what they're intended to do, D3 will have no complaint when you try to push
-at the edges.
+This is not the case in D3. D3 is output-neutral; this means that every graphic requires quite a bit of explicit coding to give direction to our web browser. On the one hand, this means that producing even simple graphics will at first seem very laborious. On the other hand, because D3 is not prescriptive, you can quite literally do anything with it.
+Where dedicated plotting and mapping libraries break down quite quickly when you want to do something other than what they're intended to do, D3 will have no complaint when you try to push at the edges.
 
 Think of it as a very fancy tool that you have to learn to operate, telling it what to draw, what data to base the drawing on, and which document to manipulate.
 
@@ -255,9 +245,13 @@ use D3 to create and define the height attribute.
 	</svg>
 	<script>
 		var ratData = [ 40, 90, 30, 60 ];
+		// make sure to add a semicolon to mark that this statement is over, and we're moving on (javascript is semicolon deliminated)
 
+// the below selects all rectangles in our page
 		d3.selectAll( "rect" )
+		// binds ratData to rectangles
 			.data( ratData )
+			//this sets height based on value of array at iterator position
 			.attr( "height", function(d){
 				return d;
 			});
