@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+
+.counties {
+  fill: none;
+}
+
+.states {
+  fill: none;
+  stroke: #fff;
+  stroke-linejoin: round;
+}
+
+</style>
+</head>
+<body>
+<svg width="960" height="600"></svg>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+<script src="https://d3js.org/topojson.v2.min.js"></script>
+<script>
+// set up a bunch of configuration variables ("+" ensures that the width value is read in as a number)
+ var svg = d3.select("svg"),
+      width = +svg.attr("width"),
+      height = +svg.attr("height");
+
+  var unempoyment = d3.map();
+// putting in geographic element too for mapping; projects paths using our defined coordinate system
+  var path = d3.geoPath();
+
+  var color = d3.scaleThreshold()
+    // sets up a scale that bins an in put value based on input thresholds
+    .domain(d3.range(2, 10))
+    .range(d3.schemeBlues([9]));
+// reading in d3 file stored at d3js webpage, setting up a line of files and when they're done, trigger a certain function "ready" function.
+  d3.queue()
+    .defer(d3.json, "https://d3js.org/us-10m.v1.json")
+    .defer(d3.tsv, "unemployment.tsv", function(d) { unempoyment.set(d.id, +d.rate);})
+    .await(ready);
+// the following reads in the tsvs in order that we defined them, after error first
+  function ready(error, us) {
+    if (error) throw error;
+// selecting is how things are created; don't have to actually have created them yet!
+    svg.append("g")
+      .attr("class", "counties");
+      .selectAll("path")
+      .data(topojson.feature(us, us.objects.counties).features)
+      // enter says "accomodate the length of my data, so I can take every length in this data and have it be bound – make enough stuff"
+      .enter().append("path")
+        .attr("fill", "red")
+        .attr("d", path);
+// try printing stuff to the console to test things: console.log(us), for example
+  }
+
+</script>
+</body>
+</html>
