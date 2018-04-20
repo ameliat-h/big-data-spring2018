@@ -30,7 +30,7 @@ import matplotlib.pylab as plt
 
 # Read in the data
 
-df = pd.read_csv('week-03/data/skyhook_2017-07.csv', sep=',')
+df = pd.read_csv('/Users/ehuntley/Dropbox/teaching/big-data/data/skyhook_2017-07.csv', sep=',')
 
 # Create a new date column formatted as datetimes.
 df['date_new'] = pd.to_datetime(df['date'], format='%Y-%m-%d')
@@ -138,7 +138,7 @@ for i in range(0, 168, 24):
   else:
     df['hour'].replace(range(j, j + 24, 1), range(-5, 19, 1), inplace=True)
 
-
+df['hour'].unique()
 # checking
 print(df.groupby('hour')['count'].sum())
 ```python
@@ -154,7 +154,6 @@ print(df.groupby('hour')['count'].sum())
 ```python
 
 df['timestamp']=df['date_new']+pd.to_timedelta(df['hour'], unit='h')
-
 ```
 
 ## Problem 4: Create Two Line Charts of Activity by Hour
@@ -178,6 +177,10 @@ plt.show()
 #Pick three times (or time ranges) and use the latitude and longitude to produce scatterplots of each. In each of these scatterplots, the size of the dot should correspond to the number of GPS pings. Find the [Scatterplot documentation here](http://pandas.pydata.org/pandas-docs/version/0.19.1/visualization.html#scatter-plot). You may also want to look into how to specify a pandas Timestamp (e.g., pd.Timestamp) so that you can write a mask that will filter your DataFrame appropriately. Start with the [Timestamp documentation](https://pandas.pydata.org/pandas-docs/stable/timeseries.html#timestamps-vs-time-spans)!
 
 ```python
+
+# YO YOU SWITCHED YOUR LATS WITH YER LONS!
+
+
 df.head()
 df['timestamp'].unique()
 y1=df[df['timestamp']=='2017-07-007T23:00:00.000000000']
